@@ -1,0 +1,38 @@
+<ion-view view-title="Search" ng-controller="SearchCtrl">
+  <ion-content>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search by name">
+      </label>
+    </div>
+
+    
+    <h4 class="offset-left">{{players.length}} players found at your level</h4>
+    
+
+    <div class="list card player" ng-repeat="player in players">
+      <div class="item item-avatar">
+        <img ng-src="{{player.photo}}"/>
+        <h2>{{player.name}}</h2>
+        <p>Rating: {{player.rating}}</p>
+        <p>Record: {{player.record}}</p>
+        <p>Availability: {{player.availability}}</p>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#" ng-click="openModal(player)">
+          <i class="icon ion-ios7-chatbubble-outline positive"></i>
+          Message
+        </a>
+        <a class="tab-item" href="#" ng-click="toggleFavorite($index)">
+          <i class="icon ion-ios7-star energized" ng-show="{{player.favorited}}"></i>
+          <i class="icon ion-ios7-star-outline energized" ng-hide="{{player.favorited}}"></i>
+          Favorite
+        </a>
+      </div>
+    </div>
+    
+
+  </ion-content>
+</ion-view>
