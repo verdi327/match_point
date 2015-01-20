@@ -1,6 +1,6 @@
 var app = angular.module("app");
 
-app.controller('PlaylistsCtrl', function($scope) {
+app.controller('ProfileCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },

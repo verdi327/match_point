@@ -20,8 +20,9 @@ app.controller('SearchCtrl', function($scope, $ionicModal, $timeout) {
     $scope.modal = modal;
   });
 
-  $scope.openModal = function(player) {
+  $scope.openModal = function(player, index) {
     $scope.player = player;
+    $scope.player.index = index;
     $scope.modal.show();
   };
 
@@ -29,12 +30,10 @@ app.controller('SearchCtrl', function($scope, $ionicModal, $timeout) {
     $scope.modal.hide();
   };
 
-  $scope.messagePlayer = function() {
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
+  $scope.messagePlayer = function(player) {
     $timeout(function() {
       $scope.closeModal();
-      $scope.players
+      $scope.players.splice(player.index, 1)
     }, 1000);
   };
   

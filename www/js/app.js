@@ -33,30 +33,41 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
-  .state('app.browse', {
-    url: "/browse",
+  .state('app.messages', {
+    url: "/messages",
     views: {
       'menuContent': {
-        templateUrl: "templates/browse.html"
+        templateUrl: "templates/messages.html"
       }
     }
   })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
 
-  .state('app.single', {
-    url: "/playlists/:playlistId",
+  .state('app.profile', {
+    url: "/profile",
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
+        templateUrl: "templates/profile.html",
+        controller: 'ProfileCtrl'
+      }
+    }
+  })
+
+  .state('app.submit-score', {
+    url: "/submit-score",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/submit-score.html",
+        controller: 'SubmitScoreCtrl'
+      }
+    }
+  })
+
+  .state('app.buddy-list', {
+    url: "/buddy-list",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/buddy-list.html",
+        controller: 'BuddyListCtrl'
       }
     }
   });

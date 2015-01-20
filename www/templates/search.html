@@ -21,14 +21,14 @@
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="#" ng-click="openModal(player)">
+        <a class="tab-item" href="#" ng-click="openModal(player, $index)">
           <i class="icon ion-ios7-chatbubble-outline positive"></i>
           Message
         </a>
         <a class="tab-item" href="#" ng-click="toggleFavorite($index)">
-          <i class="icon ion-ios7-star energized" ng-show="{{player.favorited}}"></i>
-          <i class="icon ion-ios7-star-outline energized" ng-hide="{{player.favorited}}"></i>
-          Favorite
+          <i class="icon ion-ios7-plus-outline balanced" ng-hide="player.favorited"></i>
+          <i class="icon ion-ios7-minus-outline assertive" ng-show="player.favorited"></i>
+          Buddy List
         </a>
       </div>
     </div>
