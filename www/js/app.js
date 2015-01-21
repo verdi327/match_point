@@ -37,7 +37,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/messages",
     views: {
       'menuContent': {
-        templateUrl: "templates/messages.html"
+        templateUrl: "templates/messages.html",
+        controller: "MessagesCtrl"
       }
     }
   })

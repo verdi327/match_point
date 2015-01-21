@@ -1,5 +1,12 @@
-<ion-view view-title="Messages">
+<ion-view view-title="Messages" ng-controller="MessagesCtrl">
   <ion-content>
-    <h1>Messages</h1>
+    <div class="list">
+      <a class="item item-avatar item-icon-right" href="#" ng-repeat="message in messages">
+        <img ng-src="{{message.photo}}">
+        <h2>{{message.name}}</h2>
+        <p>last message: {{message.lastMessage | date:'MM/dd/yyyy @ h:mma'}}</p>
+        <i class="icon ion-ios7-arrow-right positive"></i>
+      </a>
+    </div>
   </ion-content>
 </ion-view>
