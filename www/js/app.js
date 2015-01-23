@@ -6,12 +6,66 @@ app.run(function($ionicPlatform) {
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
   });
+})
+
+// All this does is allow the message
+// to be sent when you tap return
+app.directive('input', function($timeout) {
+  return {
+    restrict: 'E',
+    scope: {
+      'returnClose': '=',
+      'onReturn': '&',
+      'onFocus': '&',
+      'onBlur': '&'
+    },
+    link: function(scope, element, attr) {
+      element.bind('focus', function(e) {
+        if (scope.onFocus) {
+          $timeout(function() {
+            scope.onFocus();
+          });
+        }
+      });
+      element.bind('blur', function(e) {
+        if (scope.onBlur) {
+          $timeout(function() {
+            scope.onBlur();
+          });
+        }
+      });
+      element.bind('keydown', function(e) {
+        if (e.which == 13) {
+          if (scope.returnClose) element[0].blur();
+          if (scope.onReturn) {
+            $timeout(function() {
+              scope.onReturn();
+            });
+          }
+        }
+      });
+    }
+  }
+})
+
+app.directive('closeOption', function($ionicGesture, $ionicListDelegate) {
+  return {
+    restrict :  'A',
+
+    link : function(scope, elem, attrs) {
+     $ionicGesture.on('touch', function(e){
+       $ionicListDelegate.closeOptionButtons();
+     }, elem);
+
+    }
+  }
 })
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -33,12 +87,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
-  .state('app.messages', {
+  .state('app.conversations', {
     url: "/messages",
     views: {
       'menuContent': {
-        templateUrl: "templates/messages.html",
-        controller: "MessagesCtrl"
+        templateUrl: "templates/conversations.html",
+        controller: "ConversationsCtrl"
+      }
+    }
+  })
+
+  .state('app.conversation', {
+    url: "/messages/:conversationId",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/conversation.html",
+        controller: "ConversationCtrl"
       }
     }
   })

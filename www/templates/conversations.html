@@ -1,0 +1,14 @@
+<ion-view view-title="Messages" ng-controller="ConversationsCtrl">
+  <ion-content>
+    <div class="list">
+      <div ng-repeat="convo in conversations">
+        <a class="item item-avatar item-icon-right" href="#/app/messages/{{convo.id}}">
+          <img ng-src="{{convo.user.photo}}">
+          <h2>{{convo.user.name}}</h2>
+          <p>last message: {{convo.lastMessage | date:'MM/dd/yyyy @ h:mma'}}</p>
+          <i class="icon ion-ios7-arrow-right positive"></i>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
