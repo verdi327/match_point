@@ -1,0 +1,23 @@
+.match-results{
+  .result-win{
+    padding:15px;
+    border-radius:5px;
+    color:$light;
+    background: $balanced;
+    margin-right:10px;
+  }
+
+  .result-loss{
+    padding:15px;
+    border-radius:5px;
+    color:$light;
+    background: $assertive;
+    margin-right:10px;
+  }
+
+  span.date{
+    float:right;
+    font-size:10px;
+    margin-top:-55px;
+  }
+}

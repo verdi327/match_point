@@ -1,5 +1,54 @@
-<ion-view view-title="Profile">
+<ion-view view-title="{{user.name}}">
+  <ion-nav-buttons side="right" ng-show="user.id === currentUser.id">
+    <button class="button button-clear button-positive" ng-click="edit()">
+      edit
+    </button>
+  </ion-nav-buttons>
+
   <ion-content>
-    <h1>Profile</h1>
+  
+    <div class="row" style="border-bottom:1px solid">
+      <div class="col">
+        <img style="border-radius:50%" ng-src="{{user.photo}}"/>
+      </div>
+      <div class="col col-67">
+        <p>Rating: {{user.rating}}</p>
+        <p>Record: {{user.record}}</p>
+        <p>Availability: {{user.availability}}</p>
+      </div>
+    </div>
+
+    
+    <div class="list match-results" style="margin-top:20px">
+      <div class="item item-divider" style="text-align:center">
+        Match History
+      </div>
+      <div class="item item-avatar" ng-repeat="result in matchResults">
+          <img ng-src="http://placehold.it/50x50">
+          <h2>{{result.opponent}}</h2>
+          <p>
+            <span ng-class="result.result === 'W' ? 'result-win' : 'result-loss'">
+              {{result.result}}
+            </span>
+            {{result.score}}
+          </p>
+        <span class="date">{{result.date | date:'shortDate'}}</span>
+      </div>
+    </div>
+  
+  
+  
   </ion-content>
+
+  <div class="tabs tabs-icon-left" ng-if="user.id != currentUser.id">
+    <a class="tab-item" ng-controller="MessageCtrl" ng-click="openMsgModal(user)">
+      <i class="icon ion-ios7-chatbubble-outline positive"></i>
+      Message
+    </a>
+    <a class="tab-item" ng-click="user.favorited = !user.favorited">
+      <i class="icon ion-ios7-plus-outline balanced" ng-hide="user.favorited"></i>
+      <i class="icon ion-ios7-minus-outline assertive" ng-show="user.favorited"></i>
+      Buddy List
+    </a>
+  </div>
 </ion-view>
