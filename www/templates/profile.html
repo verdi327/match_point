@@ -1,6 +1,6 @@
 <ion-view view-title="{{user.name}}">
   <ion-nav-buttons side="right" ng-show="user.id === currentUser.id">
-    <button class="button button-clear button-positive" ng-click="edit()">
+    <button class="button button-clear button-positive" ng-click="openEditModal()">
       edit
     </button>
   </ion-nav-buttons>
@@ -40,7 +40,7 @@
   
   </ion-content>
 
-  <div class="tabs tabs-icon-left" ng-if="user.id != currentUser.id">
+  <div class="tabs tabs-icon-left" ng-show="user.id != currentUser.id">
     <a class="tab-item" ng-controller="MessageCtrl" ng-click="openMsgModal(user)">
       <i class="icon ion-ios7-chatbubble-outline positive"></i>
       Message

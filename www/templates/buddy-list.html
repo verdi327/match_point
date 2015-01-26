@@ -7,7 +7,7 @@
   <ion-content close-option>
     <ion-list show-delete="data.showDelete" delegate-handle="buddy-list">   
       <ion-item ng-repeat="friend in friends"
-                ng-click="showProfile()"
+                ng-click="showProfile(friend)"
                 on-hold="data.showDelete = !data.showDelete">
 
         <img ng-src="http://placehold.it/40x40" style="float:left; border-radius:50%">

@@ -108,7 +108,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
   .state('app.profile', {
-    url: "/profile",
+    url: "/profile/:userId",
     views: {
       'menuContent': {
         templateUrl: "templates/profile.html",

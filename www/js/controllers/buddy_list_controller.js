@@ -1,6 +1,6 @@
 var app = angular.module("app");
 
-app.controller('BuddyListCtrl', function($scope, Friends, $ionicModal, $timeout) {
+app.controller('BuddyListCtrl', function($scope, Friends, $ionicModal, $timeout, $state) {
   $scope.data = {
     showDelete: false
   }
@@ -28,7 +28,7 @@ app.controller('BuddyListCtrl', function($scope, Friends, $ionicModal, $timeout)
     }, 1000);
   };
 
-  $scope.showProfile = function(){
-    alert("take to profile page");
+  $scope.showProfile = function(friend){
+    $state.go('app.profile', {userId: friend.id })
   };
 })

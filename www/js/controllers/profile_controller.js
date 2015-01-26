@@ -1,20 +1,9 @@
 var app = angular.module("app");
 
-app.controller('ProfileCtrl', function($scope, $filter) {
-  $scope.currentUser = {id: 1}
+app.controller('ProfileCtrl', function($scope, $filter, $ionicModal, $timeout, $stateParams, Users) {
+  $scope.currentUser = {id: 10}
 
-  $scope.user = {
-    name: "Michael Verdi",
-    photo: "http://placehold.it/100x100",
-    rating: "Starting 4.5",
-    record: "10-2",
-    availability: "Weekdays after 5pm, Weekends anytime",
-    id: 1
-  }
-
-  $scope.edit = function() {
-    
-  }
+  $scope.user = Users.get($stateParams.userId)
 
   $scope.matchResults = [
     {result: "W", score: "6-3 2-6 7-5", opponent: "R. Nadal", date: "1288323623006"},
@@ -24,4 +13,25 @@ app.controller('ProfileCtrl', function($scope, $filter) {
     {result: "L", score: "1-6 0-6", opponent: "C. Shooting-Star", date: "1288323623008"},
     {result: "W", score: "7-6 7-6", opponent: "L. Longasslastname", date: "1288623623003"},
   ]
+
+  $ionicModal.fromTemplateUrl('templates/modals/edit-profile.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openEditModal = function() {
+    $scope.modal.show();
+  };
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  $scope.updateProfile = function() {
+    $timeout(function() {
+      $scope.closeModal();
+    }, 1000);
+  };
 })
