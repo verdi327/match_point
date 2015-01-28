@@ -7032,8 +7032,36 @@ a.button {
   font-size: 10px;
   margin-top: -55px; }
 
-.offset-left {
-  margin-left: 10px; }
+.slider {
+  max-width: 100%;
+  max-height: 100%;
+  padding-bottom: 25px; }
+
+.slider-pager {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  width: 100%;
+  height: 15px;
+  text-align: right; }
+
+.set-scores .set-header {
+  background: #f8f8f8;
+  padding: 5px 5px 5px 15px; }
+.set-scores .avatars {
+  padding-left: 10px; }
+  .set-scores .avatars img {
+    border-radius: 50%;
+    margin-bottom: 10px; }
+.set-scores .set-score {
+  text-align: center;
+  font-size: 18px;
+  height: 36px; }
+
+.score-review {
+  margin-top: 100px !important; }
+  .score-review #submit-score-btn {
+    margin-top: 45px; }
 
 .messaging-view .content-stable {
   background: #f8f8f8; }
@@ -7109,3 +7137,6 @@ a.button {
   border-radius: 10px;
   text-align: left;
   max-width: 240px; }
+
+.offset-left {
+  margin-left: 10px; }

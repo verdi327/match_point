@@ -1,5 +1,82 @@
 <ion-view view-title="Submit Score">
   <ion-content>
-    <h1>Submit Score</h1>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+      <ion-slide>
+        <div class="find-opponent">
+          <h4 class="offset-left">Find your opponent</h4>
+          <div class="list list-inset">
+            <label class="item item-input">
+              <i class="icon ion-search placeholder-icon"></i>
+              <input type="text" placeholder="Search by name">
+            </label>
+          </div>
+          <div class="list list-inset">
+            <div class="item" ng-repeat="player in players" ng-click="selectOpponent(player)">
+              <img ng-src="http://placehold.it/40x40" style="float:left; border-radius:50%">
+              <h2 style="padding:10px 0 0 10px; float:left">{{player.name}}</h2>
+              <i style="float:right;padding-top:10px" class="ion ion-checkmark" ng-show="selectedOpponent.id === player.id"></i>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <h4 class="offset-left">Report score</h4>
+        <div class="bar bar-subheader">
+          <div class="button-bar">
+            <a class="button" ng-class="{'button-positive': isActive(1)}" ng-click="setSets(1)">1</a>
+            <a class="button" ng-class="{'button-positive': isActive(2)}" ng-click="setSets(2)">2</a>
+            <a class="button" ng-class="{'button-positive': isActive(3)}" ng-click="setSets(3)">3</a>
+            <a class="button" ng-class="{'button-positive': isActive(4)}" ng-click="setSets(4)">4</a>
+            <a class="button" ng-class="{'button-positive': isActive(5)}" ng-click="setSets(5)">5</a>
+          </div>
+        </div>
+
+        <div style="margin-top:75px"></div>
+
+        <div class="set-scores" ng-repeat="set in matchResult.score">
+          <h5 class="set-header">Set {{$index + 1}}</h5>
+          <div class="row">
+            <div class="col col-20 avatars">
+              <img ng-src="http://placehold.it/40x40"></br>
+              <img ng-src="http://placehold.it/40x40">
+            </div>
+            <div class="col">
+              <label class="item item-input">
+                <input type="number" class="set-score" ng-model="set[currentUserId]">  
+              </label>
+
+              <label class="item item-input">
+                <input type="number" class="set-score" ng-model="set[oppId]">  
+              </label>
+              
+              
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <h4 class="offset-left">Choose a date</h4>
+        <label class="item item-input">
+          <input type="date" ng-model="matchResult.date">
+        </label>
+
+        <div class="score-review" ng-show="matchResult.date != ''" style="margin-top:100px">
+          <h4 class="offset-left">Quick review</h4>
+          <ul class="list">
+            <li class="item">
+              Opponent: {{selectedOpponent.name}}
+            </li>
+            <li class="item">
+              Score: {{formatSetScore()}}
+            </li>
+            <li class="item">
+              Date: {{matchResult.date | date:'MM/dd/yyyy'}}
+            </li>
+          </ul>
+          
+          <button class="button button-block button-positive" type="submit" id="submit-score-btn" ng-click="showObj()">Submit Score</button>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
   </ion-content>
 </ion-view>
