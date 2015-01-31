@@ -7138,5 +7138,27 @@ a.button {
   text-align: left;
   max-width: 240px; }
 
+.avatar {
+  border-radius: 50%; }
+
+.match-result .date {
+  float: right;
+  font-size: 10px;
+  margin: 2px 10px; }
+.match-result .player-view {
+  text-align: center; }
+.match-result .score {
+  margin-top: 15px;
+  text-align: center; }
+
+.rating-update i {
+  position: absolute;
+  right: 20px;
+  margin-top: 7px;
+  font-size: 20px; }
+.rating-update .player-info h5 {
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
 .offset-left {
   margin-left: 10px; }

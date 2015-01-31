@@ -1,0 +1,52 @@
+<ion-view view-title="Feed" ng-controller="FeedCtrl">
+  <ion-content>
+    <div class="news-feed">
+      <div class="feed-item" ng-repeat="item in feed">
+      <div class="card match-result" ng-if="item.type === 'match-result'">
+          <div class="date">
+            {{item.date | date:'shortDate'}}
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="player-view" ng-click="viewProfile(item.winner.id)">
+                <img class="avatar" ng-src="{{item.winner.photo}}">
+                <h5>{{item.winner.shortName}}</h5>
+                <p>{{item.winner.rating}}</p>
+              </div>
+            </div>
+            <div class="col score">
+              <p>defeats</p>
+              <p>{{item.score}}</p>
+            </div>
+            <div class="col">
+              <div class="player-view" ng-click="viewProfile(item.loser.id)">
+                <img class="avatar" ng-src="{{item.loser.photo}}">
+                <h5>{{item.loser.shortName}}</h5>
+                <p>{{item.loser.rating}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card rating-update" ng-if="item.type === 'player-rating'" 
+                                        ng-click="viewProfile(item.id)">
+          <i class="icon ion-ios7-arrow-up balanced" ng-show="item.change === 'up'"></i>
+          <i class="icon ion-ios7-arrow-down assertive" ng-show="item.change === 'down'"></i>
+          <div class="row">
+            <div class="col col-20">
+              <img class="avatar" ng-src="{{item.photo}}">
+            </div>
+            <div class="col player-info">
+              <h5>{{item.fullName}}</h5>
+              <p>Moved from {{item.oldRating}} to {{item.newRating}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-infinite-scroll
+      on-infinite="loadMore()"
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>
