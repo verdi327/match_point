@@ -1,35 +1,68 @@
-<ion-view view-title="Search" ng-controller="SearchCtrl">
+<ion-view view-title="Find a Match" ng-controller="SearchCtrl">
+  <ion-header-bar class="bar-subheader item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios7-search placeholder-icon"></i>
+      <input type="search" placeholder="Search for players by name" ng-change="search()" ng-model="data.search">
+    </label>
+    <button class="button button-clear" ng-click="resetSearch()">
+      Cancel
+    </button>      
+  </ion-header-bar>
+
   <ion-content>
-    <div class="list list-inset">
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search by name">
-      </label>
-    </div>
+    <div class="search-results" ng-if="data.players.length > 0">
+      <h4 class="offset-left">
+        Search Results
+        <span class="count">{{data.players.length}} found</span>
+      </h4>
+      
+      <div class="list card player" ng-repeat="player in data.players">
+        <div class="item item-avatar">
+          <img ng-src="{{player.photo}}"/>
+          <h2>{{player.name}}</h2>
+          <p>Rating: {{player.rating}}</p>
+          <p>Record: {{player.record}}</p>
+          <p>Availability: {{player.availability}}</p>
+        </div>
 
-    
-    <h4 class="offset-left">{{players.length}} players found at your level</h4>
-    
-
-    <div class="list card player" ng-repeat="player in players">
-      <div class="item item-avatar">
-        <img ng-src="{{player.photo}}"/>
-        <h2>{{player.name}}</h2>
-        <p>Rating: {{player.rating}}</p>
-        <p>Record: {{player.record}}</p>
-        <p>Availability: {{player.availability}}</p>
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item" ng-controller="MessageCtrl" ng-click="openMsgModal(player)">
+            <i class="icon ion-ios7-chatbubble-outline positive"></i>
+            Message
+          </a>
+          <a class="tab-item" ng-click="player.favorited = !player.favorited">
+            <i class="icon ion-ios7-plus-outline balanced" ng-hide="player.favorited"></i>
+            <i class="icon ion-ios7-minus-outline assertive" ng-show="player.favorited"></i>
+            Buddy List
+          </a>
+        </div>
       </div>
+    </div> 
 
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" ng-controller="MessageCtrl" ng-click="openMsgModal(player)">
-          <i class="icon ion-ios7-chatbubble-outline positive"></i>
-          Message
-        </a>
-        <a class="tab-item" ng-click="player.favorited = !player.favorited">
-          <i class="icon ion-ios7-plus-outline balanced" ng-hide="player.favorited"></i>
-          <i class="icon ion-ios7-minus-outline assertive" ng-show="player.favorited"></i>
-          Buddy List
-        </a>
+    
+    <div class="recommended-players" ng-if="data.players.length === 0">
+      <h4 class="offset-left">Recommended Next Match Ups</h4>
+      
+      <div class="list card player" ng-repeat="player in players">
+        <div class="item item-avatar">
+          <img ng-src="{{player.photo}}"/>
+          <h2>{{player.name}}</h2>
+          <p>Rating: {{player.rating}}</p>
+          <p>Record: {{player.record}}</p>
+          <p>Availability: {{player.availability}}</p>
+        </div>
+
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item" ng-controller="MessageCtrl" ng-click="openMsgModal(player)">
+            <i class="icon ion-ios7-chatbubble-outline positive"></i>
+            Message
+          </a>
+          <a class="tab-item" ng-click="player.favorited = !player.favorited">
+            <i class="icon ion-ios7-plus-outline balanced" ng-hide="player.favorited"></i>
+            <i class="icon ion-ios7-minus-outline assertive" ng-show="player.favorited"></i>
+            Buddy List
+          </a>
+        </div>
       </div>
     </div>
     

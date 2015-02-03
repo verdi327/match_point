@@ -7,11 +7,15 @@
           <div class="list list-inset">
             <label class="item item-input">
               <i class="icon ion-search placeholder-icon"></i>
-              <input type="text" placeholder="Search by name">
+              <!-- find out why this a tag is not firing the function on click -->
+              <a class="close-icon" ng-click="resetSearch()">
+                <i class="ion-ios7-close-empty positive"></i>
+              </a>
+              <input type="text" placeholder="Search by name" ng-change="search()" ng-model="data.search">
             </label>
           </div>
           <div class="list list-inset">
-            <div class="item" ng-repeat="player in players" ng-click="selectOpponent(player)">
+            <div class="item" ng-repeat="player in data.players" ng-click="selectOpponent(player)" ng-if="data.players.length > 0">
               <img ng-src="http://placehold.it/40x40" style="float:left; border-radius:50%">
               <h2 style="padding:10px 0 0 10px; float:left">{{player.name}}</h2>
               <i style="float:right;padding-top:10px" class="ion ion-checkmark" ng-show="selectedOpponent.id === player.id"></i>
@@ -42,27 +46,28 @@
             </div>
             <div class="col">
               <label class="item item-input">
-                <input type="number" class="set-score" ng-model="set[currentUserId]">  
-              </label>
+                <input type="tel" class="set-score" ng-model="set[currentUserId]">  
+              </label>              
 
               <label class="item item-input">
-                <input type="number" class="set-score" ng-model="set[oppId]">  
-              </label>
-              
-              
+                <input type="tel" class="set-score" ng-model="set[oppId]">  
+              </label>              
             </div>
           </div>
         </div>
       </ion-slide>
       <ion-slide>
         <h4 class="offset-left">Choose a date</h4>
-        <label class="item item-input">
-          <input type="date" ng-model="matchResult.date">
-        </label>
+        <div class="list list-inset">
+          <label class="item item-input">
+            <input type="date" ng-model="matchResult.date">
+          </label>
+        </div>
+        
 
         <div class="score-review" ng-show="matchResult.date != ''" style="margin-top:100px">
           <h4 class="offset-left">Quick review</h4>
-          <ul class="list">
+          <ul class="list list-inset">
             <li class="item">
               Opponent: {{selectedOpponent.name}}
             </li>
@@ -72,9 +77,11 @@
             <li class="item">
               Date: {{matchResult.date | date:'MM/dd/yyyy'}}
             </li>
+
+            <button class="button button-block button-positive" type="submit" id="submit-score-btn" ng-click="submitScore()">Submit Score</button>
           </ul>
           
-          <button class="button button-block button-positive" type="submit" id="submit-score-btn" ng-click="showObj()">Submit Score</button>
+          
         </div>
       </ion-slide>
     </ion-slide-box>

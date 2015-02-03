@@ -1,6 +1,6 @@
 var app = angular.module("app");
 
-app.controller('SubmitScoreCtrl', function($scope, Friends, $filter) {
+app.controller('SubmitScoreCtrl', function($scope, Players, $filter, $state, $timeout, $ionicHistory, $ionicSlideBoxDelegate) {
   currentUser = {name: "Michael Verdi", photo: "http://placehold.it/50x50", id: 10}
   $scope.matchResult = {
     players: [],
@@ -8,7 +8,19 @@ app.controller('SubmitScoreCtrl', function($scope, Friends, $filter) {
     date: ""
   };
 
-  $scope.players = Friends.all();
+  $scope.data = { "players" : [], "search" : '' };
+
+  $scope.resetSearch = function(){
+    $scope.data = { "players" : [], "search" : '' };
+  }
+
+  $scope.search = function() {
+    Players.search($scope.data.search).then(
+      function(matches) {
+        $scope.data.players = matches;
+      }
+    )
+  }
 
   buildSets = function(){
     $scope.matchResult.score = [];
@@ -52,6 +64,24 @@ app.controller('SubmitScoreCtrl', function($scope, Friends, $filter) {
       score = score + (stringified + " ");
     });
     return score;
+  }
+
+  resetForm = function() {
+    $scope.matchResult = {
+      players: [],
+      score: [],
+      date: ""
+    };
+    $scope.selectedOpponent = '';
+    $ionicSlideBoxDelegate.slide(0);
+  }
+
+  $scope.submitScore = function(){
+    $timeout( function(){
+      resetForm();
+      $ionicHistory.currentView($ionicHistory.backView());
+      $state.go("app.feed", {location: 'replace'});
+    }, 1000);
   }
 
 

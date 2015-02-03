@@ -7032,6 +7032,13 @@ a.button {
   font-size: 10px;
   margin-top: -55px; }
 
+.find-opponent .close-icon {
+  position: absolute;
+  right: 5px;
+  margin-top: -2px;
+  margin-right: 8px;
+  font-size: 28px; }
+
 .slider {
   max-width: 100%;
   max-height: 100%;
@@ -7159,6 +7166,13 @@ a.button {
 .rating-update .player-info h5 {
   margin-top: 5px;
   margin-bottom: 5px; }
+
+.search-results span.count {
+  float: right;
+  font-size: 12px;
+  font-style: italic;
+  margin-right: 10px;
+  margin-top: 5px; }
 
 .offset-left {
   margin-left: 10px; }
