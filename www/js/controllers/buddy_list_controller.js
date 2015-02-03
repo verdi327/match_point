@@ -1,11 +1,16 @@
 var app = angular.module("app");
 
-app.controller('BuddyListCtrl', function($scope, Friends, $ionicModal, $timeout, $state) {
+app.controller('BuddyListCtrl', function($scope, Groups, $ionicModal, $timeout, $state) {
   $scope.data = {
     showDelete: false
   }
 
-  $scope.friends = Friends.all();
+  Groups.all().then(
+    function(groups) {
+      $scope.groups = groups;
+    }
+  )
+  
 
   $ionicModal.fromTemplateUrl('templates/modals/message-all-friends.html', {
     scope: $scope,

@@ -7,13 +7,12 @@
   </ion-header-bar>
   <ion-content>
     <form ng-submit="messagePlayer(player)">
-      <div class="list">
-        <label class="item item-input">
-          <input type="text" value="Hey, {{player.name}} let's play tennis!">
+      <div class="list list-inset">
+        <label class="item item-input text">
+          <textarea rows="5" ng-model="data.message"></textarea>
         </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Message</button>
-        </label>
+        
+        <button class="button button-block button-positive" type="submit">Message</button>
       </div>
     </form>
   </ion-content>

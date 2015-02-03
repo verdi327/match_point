@@ -7174,5 +7174,13 @@ a.button {
   margin-right: 10px;
   margin-top: 5px; }
 
+.buddy-list .player-count {
+  float: right;
+  font-size: 12px;
+  font-weight: normal; }
+
+.new-group {
+  margin-top: 35px; }
+
 .offset-left {
   margin-left: 10px; }

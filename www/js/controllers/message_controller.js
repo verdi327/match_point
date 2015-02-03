@@ -11,6 +11,7 @@ app.controller('MessageCtrl', function($scope, $ionicModal, $timeout, $ionicList
 
   $scope.openMsgModal = function(player) {
     $scope.player = player;
+    $scope.data = {message: ("Hey, " + player.name)}
     $scope.modal.show();
   };
 
