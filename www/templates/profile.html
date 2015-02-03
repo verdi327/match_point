@@ -1,53 +1,55 @@
-<ion-view view-title="{{user.name}}">
-  <ion-nav-buttons side="right" ng-show="user.id === currentUser.id">
+<ion-view view-title="Profile">
+  <ion-nav-buttons side="right" ng-show="player.id == currentUser.id">
     <button class="button button-clear button-positive" ng-click="openEditModal()">
       edit
     </button>
   </ion-nav-buttons>
 
   <ion-content>
-  
-    <div class="row" style="border-bottom:1px solid">
-      <div class="col">
-        <img style="border-radius:50%" ng-src="{{user.photo}}"/>
+    <div id="profile-bg"></div>
+    <div id="content">
+      <div id="profile-info">
+        <img id="profile-image" ng-src="http://placehold.it/100x100">
+        <h3 id="profile-name">{{player.name}}</h3>
+        <p>Rating: {{player.rating}} </p>
+        <p>Record: {{player.record}}</p>
+        <span id="profile-description">{{player.availability}}</span>
       </div>
-      <div class="col col-67">
-        <p>Rating: {{user.rating}}</p>
-        <p>Record: {{user.record}}</p>
-        <p>Availability: {{user.availability}}</p>
-      </div>
-    </div>
-
     
-    <div class="list match-results" style="margin-top:20px">
-      <div class="item item-divider" style="text-align:center">
-        Match History
-      </div>
-      <div class="item item-avatar" ng-repeat="result in matchResults">
-          <img ng-src="http://placehold.it/50x50">
-          <h2>{{result.opponent}}</h2>
-          <p>
-            <span ng-class="result.result === 'W' ? 'result-win' : 'result-loss'">
-              {{result.result}}
-            </span>
-            {{result.score}}
-          </p>
-        <span class="date">{{result.date | date:'shortDate'}}</span>
+      <div class="list match-results" style="margin-top:20px">
+        <div class="item item-divider" style="text-align:center">
+          Match History
+        </div>
+        <div class="item item-avatar" ng-repeat="result in matchResults">
+            <img ng-src="http://placehold.it/50x50">
+            <h2>{{result.opponent}}</h2>
+            <p>
+              <span ng-class="result.result === 'W' ? 'result-win' : 'result-loss'">
+                {{result.result}}
+              </span>
+              {{result.score}}
+            </p>
+          <span class="date">{{result.date | date:'shortDate'}}</span>
+        </div>
       </div>
     </div>
-  
-  
-  
   </ion-content>
 
-  <div class="tabs tabs-icon-left" ng-show="user.id != currentUser.id">
-    <a class="tab-item" ng-controller="MessageCtrl" ng-click="openMsgModal(user)">
+  <div class="tabs tabs-icon-left" ng-show="player.id != currentUser.id">
+    <a class="tab-item" ng-controller="MessageCtrl" ng-click="openMsgModal(player)">
       <i class="icon ion-ios7-chatbubble-outline positive"></i>
       Message
     </a>
-    <a class="tab-item" ng-click="user.favorited = !user.favorited">
-      <i class="icon ion-ios7-plus-outline balanced" ng-hide="user.favorited"></i>
-      <i class="icon ion-ios7-minus-outline assertive" ng-show="user.favorited"></i>
+    <a class="tab-item" ng-hide="player.favorited" 
+                        ng-click="openGroupModal(player)"
+                        ng-controller="GroupsCtrl">
+      <i class="icon ion-ios7-plus-outline balanced"></i>
+      Buddy List
+    </a>
+    <a class="tab-item" ng-show="player.favorited" 
+                        ng-click="confirmDelete(player)"
+                        ng-controller="GroupsCtrl">
+      <i class="icon ion-ios7-minus-outline assertive"></i>
       Buddy List
     </a>
   </div>

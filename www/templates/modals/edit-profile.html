@@ -10,15 +10,11 @@
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Full Name</span>
-          <input type="text" placeholder="John Snow" value="{{user.name}}" ng-model="user.name">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Phone Number</span>
-          <input type="text" placeholder="123-456-7895" value="{{user.phoneNumber}}" ng-model="user.phoneNumber">
+          <input type="text" placeholder="John Snow" value="{{player.name}}" ng-model="player.name">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Playing Availability</span>
-          <input type="text" placeholder="After 5pm weekdays, anytime weekends" value="{{user.availability}}" ng-model="user.availability">
+          <input type="text" placeholder="After 5pm weekdays, anytime weekends" value="{{player.availability}}" ng-model="player.availability">
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Update</button>

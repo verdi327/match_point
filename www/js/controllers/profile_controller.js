@@ -1,9 +1,13 @@
 var app = angular.module("app");
 
-app.controller('ProfileCtrl', function($scope, $filter, $ionicModal, $timeout, $stateParams, Users) {
-  $scope.currentUser = {id: 10}
+app.controller('ProfileCtrl', function($scope, $filter, $ionicModal, $timeout, $stateParams, Players) {
+  $scope.currentUser = {id: 1}
 
-  $scope.user = Users.get($stateParams.userId)
+  Players.get($stateParams.userId).then(
+    function(player) {
+      $scope.player = player;
+    }
+  )
 
   $scope.matchResults = [
     {result: "W", score: "6-3 2-6 7-5", opponent: "R. Nadal", date: "1288323623006"},

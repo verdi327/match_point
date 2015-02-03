@@ -16,7 +16,6 @@ app.factory("Players", function($q, $timeout){
   ]
 
   players.search = function(searchFilter) {
-    console.log('Searching players for ' + searchFilter);
     var deferred = $q.defer();
 
     var matches = playerList.filter( function(player) {
@@ -30,6 +29,29 @@ app.factory("Players", function($q, $timeout){
     $timeout( function(){
       deferred.resolve( matches );
     }, 100);
+    return deferred.promise;
+  },
+
+  players.all = function() {
+    var deferred = $q.defer();
+
+    $timeout( function(){
+      deferred.resolve( playerList );
+    }, 100);
+    return deferred.promise;
+  },
+
+  players.get = function(id){
+    var deferred = $q.defer();
+
+    players.all().then(
+      function(players) {
+        var foundPlayer = _.select(players, function(player){
+          return player.id === parseInt(id)
+        })[0]
+        deferred.resolve(foundPlayer)
+      }
+    )
     return deferred.promise;
   }
 
