@@ -1,0 +1,44 @@
+<ion-view view-title="Results" ng-controller="HeadToHeadResultCtrl">
+  <ion-content>
+    <div class="matchup">
+      <div class="row">
+        <div class="col">
+          <div class="player-view">
+            <img class="avatar" ng-src="{{matchup.player1.photo}}">
+            <h5>{{matchup.player1.name}}</h5>
+            <p>{{matchup.player1.rating}}</p>
+          </div>
+        </div>
+        <div class="col score">
+          <p>vs</p>
+        </div>
+        <div class="col">
+          <div class="player-view">
+            <img class="avatar" ng-src="{{matchup.player2.photo}}">
+            <h5>{{matchup.player2.name}}</h5>
+            <p>{{matchup.player2.rating}}</p>
+          </div>
+        </div>
+      </div>
+      <p class="matchup-overview" ng-show="data.tied == false">{{data.leadingPlayer}} leads series {{data.record}}</p>
+      <p class="matchup-overview" ng-hide="data.tied == false">Players are tied at {{data.record}}</p>
+    </div>
+
+    <div class="list match-results" style="margin-top:20px">
+      <div class="item item-divider" style="text-align:center">
+        Match History
+      </div>
+      <div class="item item-avatar" ng-repeat="result in data.results">
+          <img ng-src="http://placehold.it/50x50">
+          <h2>{{result.winner}}</h2>
+          <p>
+            <span ng-class="result.result === 'W' ? 'result-win' : 'result-loss'">
+              {{result.result}}
+            </span>
+            {{result.score}}
+          </p>
+        <span class="date">{{result.date | date:'shortDate'}}</span>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

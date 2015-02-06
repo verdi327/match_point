@@ -144,6 +144,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'BuddyListCtrl'
       }
     }
+  })
+
+  .state('app.head-to-head', {
+    url: "/head-to-head",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/head-to-head.html",
+        controller: 'HeadToHeadCtrl'
+      }
+    }
+  })
+
+  .state('app.head-to-head-result', {
+    url: "/head-to-head/result",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/head-to-head-result.html",
+        controller: 'HeadToHeadResultCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/feed');

@@ -1,0 +1,42 @@
+<ion-view view-title="Head to Head" ng-controller="HeadToHeadCtrl">
+  <ion-content>
+    <div class="list list-inset">
+      <form ng-submit="findResults()">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Player One</span>
+          <input type="text" placeholder="search by player name" ng-change="player1Search()" ng-model="player1.search">
+        </label>
+
+        
+        <label class="item item-radio" ng-repeat="player in player1.players">
+          <input type="radio" name="player-one" ng-value="player" ng-model="matchup.player1" ng-click="player1.search = player.name">
+          <div class="item-content">
+            <img ng-src="http://placehold.it/40x40" style="float:left; border-radius:50%">
+            <h2 style="padding:10px 0 0 10px; float:left">{{player.name}}</h2>
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+
+
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Player Two</span>
+          <input type="text" placeholder="search by player name" ng-change="player2Search()" ng-model="player2.search">
+        </label>
+
+        <label class="item item-radio" ng-repeat="player in player2.players">
+          <input type="radio" name="player-two" ng-value="player" ng-model="matchup.player2" ng-click="player2.search = player.name">
+          <div class="item-content">
+            <img ng-src="http://placehold.it/40x40" style="float:left; border-radius:50%">
+            <h2 style="padding:10px 0 0 10px; float:left">{{player.name}}</h2>
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+
+        <button class="button button-block button-positive" type="submit" >Find Results</button>
+
+      </form>
+
+    </div>
+  </ion-content>
+</ion-view>

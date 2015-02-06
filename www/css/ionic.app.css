@@ -7256,5 +7256,17 @@ a.button {
 .new-group {
   margin-top: 35px; }
 
+.matchup {
+  margin-top: 20px; }
+  .matchup .player-view {
+    text-align: center; }
+  .matchup .score {
+    margin-top: 15%;
+    text-align: center;
+    font-weight: bold; }
+  .matchup .matchup-overview {
+    text-align: center;
+    font-style: italic; }
+
 .offset-left {
   margin-left: 10px; }
