@@ -1,4 +1,4 @@
-<ion-view view-title="{{user.user.name}}" ng-controller="ConversationCtrl" class="messaging-view">
+<ion-view view-title="{{player.user.name}}" ng-controller="ConversationCtrl" class="messaging-view">
   <ion-content class="content-stable"
                on-tap="showTime = !showTime">
 
@@ -14,6 +14,9 @@
   </ion-content>
 
   <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+    <button class="button button-clear" ng-controller="CalendarCtrl" ng-click="openCalendarModal(player.user.name)">
+      <i class="icon ion-ios7-calendar-outline"></i>
+    </button>
     <label class="item-input-wrapper">
       <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
     </label>

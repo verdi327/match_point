@@ -1,7 +1,7 @@
 var app = angular.module("app");
 
 app.controller('ConversationCtrl', function($scope, $filter, $stateParams, Conversations, $timeout, $ionicScrollDelegate) {
-  $scope.user = Conversations.get($stateParams.conversationId);
+  $scope.player = Conversations.get($stateParams.conversationId);
   $scope.showTime = true;
 
   var alternate,

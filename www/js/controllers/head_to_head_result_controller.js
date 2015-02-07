@@ -8,6 +8,4 @@ app.controller('HeadToHeadResultCtrl', function($scope, Players, $state, Matchup
       $scope.data = results
     }
   )
-
-
 })

@@ -1,0 +1,36 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Add to Calendar</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeModal()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="addToCalendar()">
+      <div class="list list-inset">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Title</span>
+          <input type="text" placeholder="tennis match with {{playerName}}" ng-model="data.title">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Location</span>
+          <input type="text" placeholder="Bay Club" ng-model="data.location">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Start Time</span>
+          <input type="text" ng-model="data.startDateTime" ng-click="datePicker()">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">End Time</span>
+          <input type="text" ng-model="data.endDateTime" ng-click="datePicker()">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Notes</span>
+          <textarea rows="3" ng-model="data.notes"></textarea>
+        </label>
+        
+        <button class="button button-block button-positive" type="submit">Add Event</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
