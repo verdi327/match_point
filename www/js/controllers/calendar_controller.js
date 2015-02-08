@@ -26,11 +26,19 @@ app.controller('CalendarCtrl', function($scope, $ionicModal, $timeout, $ionicPop
     }, 1000);
   };
 
-  $scope.datePicker = function(){
+  $scope.$watch('data.startDateTime', function(unformattedDate){
+    $scope.data.formattedStartDate = $filter('date')(unformattedDate, 'EEE, MMM d, y @ h:mm a');
+  });
+
+  $scope.$watch('data.endDateTime', function(unformattedDate){
+    $scope.data.formattedEndDate = $filter('date')(unformattedDate, 'EEE, MMM d, y @ h:mm a');
+  });
+
+  $scope.datePicker = function(type){
     $scope.tmp = {};
-    $scope.tmp.newDate = $scope.data.startDateTime;
+    $scope.tmp.newDate = type === 'start' ? $scope.data.startDateTime : $scope.data.endDateTime ;
     
-    var birthDatePopup = $ionicPopup.show({
+    var dateTimePopup = $ionicPopup.show({
      template: '<datetimepicker ng-model="tmp.newDate"></datetimepicker>',
      title: "Start Date",
      scope: $scope,
@@ -40,7 +48,11 @@ app.controller('CalendarCtrl', function($scope, $ionicModal, $timeout, $ionicPop
          text: '<b>Save</b>',
          type: 'button-positive',
          onTap: function(e) {
-           $scope.data.startDateTime = $scope.tmp.newDate;
+           if (type === 'start'){
+            $scope.data.startDateTime = $scope.tmp.newDate; 
+           } else {
+            $scope.data.endDateTime = $scope.tmp.newDate; 
+           }
          }
        }
      ]
