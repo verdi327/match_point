@@ -1,4 +1,4 @@
-app = angular.module('app', ['ionic', 'ngCordova'])
+app = angular.module('app', ['ionic', 'ngCordova', 'ui.bootstrap.datetimepicker'])
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

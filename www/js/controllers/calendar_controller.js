@@ -1,6 +1,6 @@
 var app = angular.module("app");
 
-app.controller('CalendarCtrl', function($scope, $ionicModal, $timeout, $cordovaDatePicker, $ionicPlatform) {
+app.controller('CalendarCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $filter) {
 
   $ionicModal.fromTemplateUrl('templates/modals/calendar.html', {
     scope: $scope,
@@ -27,22 +27,23 @@ app.controller('CalendarCtrl', function($scope, $ionicModal, $timeout, $cordovaD
   };
 
   $scope.datePicker = function(){
-    var options = {
-      date: new Date(),
-      mode: 'datetime',
-      minDate: new Date(),
-      allowOldDates: false,
-      allowFutureDates: true,
-      doneButtonLabel: 'DONE',
-      doneButtonColor: '#F2F3F4',
-      cancelButtonLabel: 'CANCEL',
-      cancelButtonColor: '#000000'
-    };
-
-    $ionicPlatform.ready(function() {
-      $cordovaDatePicker.show(options).then(function(date){
-        alert(date);
-      });
+    $scope.tmp = {};
+    $scope.tmp.newDate = $scope.data.startDateTime;
+    
+    var birthDatePopup = $ionicPopup.show({
+     template: '<datetimepicker ng-model="tmp.newDate"></datetimepicker>',
+     title: "Start Date",
+     scope: $scope,
+     buttons: [
+       { text: 'Cancel' },
+       {
+         text: '<b>Save</b>',
+         type: 'button-positive',
+         onTap: function(e) {
+           $scope.data.startDateTime = $scope.tmp.newDate;
+         }
+       }
+     ]
     });
   }
 
