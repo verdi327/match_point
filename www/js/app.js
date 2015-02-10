@@ -96,6 +96,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
+  .state('app.match-requests', {
+    url: "/match-requests",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/match-requests.html"
+      }
+    }
+  })
+
   .state('app.conversations', {
     url: "/messages",
     views: {
