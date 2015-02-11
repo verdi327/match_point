@@ -10,4 +10,23 @@ app.controller('MatchRequestsCtrl', function($scope, $ionicModal, $timeout, $fil
     {player: p2, date: "1288323623006", message: "Looking to play today after 5pm.  Latest I can go is 9pm.  I don't have a court yet."},
     {player: p3, date: "1288323623006", message: "Looking to play today after 5pm.  Latest I can go is 9pm.  I don't have a court yet."}
   ]
+
+  $ionicModal.fromTemplateUrl('templates/modals/match-request-form.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openMatchRequestModal = function(){
+    $scope.modal.show();
+  }
+
+  $scope.closeMatchRequestModal = function() {
+    $scope.modal.hide();
+  }
+
+  $scope.createMatchRequest = function() {
+    
+  }
 })

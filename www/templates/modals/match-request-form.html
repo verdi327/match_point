@@ -1,0 +1,29 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">New Match Request</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeMatchRequestModal()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="createMatchRequest()">
+      <div class="list list-inset">
+        
+          <h3 class="input-label">Desired Gender</h3>
+          <label class="item ">
+            <input type="radio" name="group">
+            <div class="item-content">
+              Go
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Note to Players</span>
+          <textarea rows="5" ng-model="newMatchRequest.message"></textarea>
+        </label>
+        <button class="button button-block button-positive" type="submit">Create Match Request</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
