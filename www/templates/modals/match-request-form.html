@@ -8,20 +8,48 @@
   <ion-content>
     <form ng-submit="createMatchRequest()">
       <div class="list list-inset">
-        
-          <h3 class="input-label">Desired Gender</h3>
-          <label class="item ">
-            <input type="radio" name="group">
-            <div class="item-content">
-              Go
-            </div>
-            <i class="radio-icon ion-checkmark"></i>
-          </label>
-        
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Note to Players</span>
-          <textarea rows="5" ng-model="newMatchRequest.message"></textarea>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Desired Gender
+          </div>
+          <select ng-model="newMatchRequest.gender">
+            <option value=""></option>
+            <option ng-repeat="option in ['Male', 'Female', 'Either']"
+                    ng-value="option">{{option}}</option>
+          </select>
         </label>
+
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Minimum Skill Level
+          </div>
+          <select ng-model="newMatchRequest.minRating" ng-change="setMaxRatings()">
+            <option value=""></option>
+            <option ng-repeat="rating in allRatings"
+                    ng-value="rating">{{rating}}</option>
+          </select>
+        </label>
+
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Maximum Skill Level
+          </div>
+          <select ng-model="newMatchRequest.maxRating" ng-disabled="minSelected()">
+            <option value=""></option>
+            <option ng-repeat="rating in maxRatings" 
+                    ng-value="rating">{{rating}}</option>
+          </select>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Date</span>
+          <input type="date" ng-model="newMatchRequest.date">
+        </label>
+        <h5 style="margin-top:30px">Message to Players</h5>
+        <label class="item item-input text">
+          <textarea rows="3" ng-model="newMatchRequest.message"></textarea>
+        </label>
+        
         <button class="button button-block button-positive" type="submit">Create Match Request</button>
       </div>
     </form>
