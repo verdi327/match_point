@@ -6,35 +6,40 @@
   
   <ion-content>
     <div class="match-requests">
-      <div class="list card player" ng-repeat="matchRequest in matchRequests">
-        <h5 style="padding-left:20px">Request For: {{matchRequest.date | date:'EEE, MMM d, y'}}</h5>
-        <div class="item item-avatar">
-          <img ng-src="{{matchRequest.player.photo}}"/>
-          <h2>{{matchRequest.player.name}}</h2>
-          <p>Rating: {{matchRequest.player.rating}}</p>
-          <p>Record: {{matchRequest.player.record}}</p>
-          <p style="white-space:normal;margin-top:10px">{{matchRequest.message}}</p>
-        </div>
+      <swipe-cards>
+        <swipe-card ng-repeat="matchRequest in matchRequests" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)">
+          <div class="list card player">
+            <h5 style="padding-left:20px">Request For: {{matchRequest.date | date:'EEE, MMM d, y'}}</h5>
+            <div class="item item-avatar">
+              <img ng-src="{{matchRequest.player.photo}}"/>
+              <h2>{{matchRequest.player.name}}</h2>
+              <p>Rating: {{matchRequest.player.rating}}</p>
+              <p>Record: {{matchRequest.player.record}}</p>
+              <p style="white-space:normal;margin-top:10px">{{matchRequest.message}}</p>
+            </div>
 
-        <div class="item tabs tabs-secondary tabs-icon-left">
-          <a class="tab-item" ng-controller="MessageCtrl" ng-click="openMsgModal(matchRequest.player)">
-            <i class="icon ion-ios7-chatbubble-outline positive"></i>
-            Message
-          </a>
-          <a class="tab-item" ng-hide="matchRequest.player.favorited" 
-                              ng-click="openGroupModal(matchRequest.player)"
-                              ng-controller="GroupsCtrl">
-            <i class="icon ion-ios7-plus-outline balanced"></i>
-            Buddy List
-          </a>
-          <a class="tab-item" ng-show="matchRequest.player.favorited" 
-                              ng-click="confirmDelete(matchRequest.player)"
-                              ng-controller="GroupsCtrl">
-            <i class="icon ion-ios7-minus-outline assertive"></i>
-            Buddy List
-          </a>
-        </div>
-      </div>
+            <div class="item tabs tabs-secondary tabs-icon-left">
+              <a class="tab-item" ng-controller="MessageCtrl" ng-click="openMsgModal(matchRequest.player)">
+                <i class="icon ion-ios7-chatbubble-outline positive"></i>
+                Message
+              </a>
+              <a class="tab-item" ng-hide="matchRequest.player.favorited" 
+                                  ng-click="openGroupModal(matchRequest.player)"
+                                  ng-controller="GroupsCtrl">
+                <i class="icon ion-ios7-plus-outline balanced"></i>
+                Buddy List
+              </a>
+              <a class="tab-item" ng-show="matchRequest.player.favorited" 
+                                  ng-click="confirmDelete(matchRequest.player)"
+                                  ng-controller="GroupsCtrl">
+                <i class="icon ion-ios7-minus-outline assertive"></i>
+                Buddy List
+              </a>
+            </div>
+          </div>    
+        </swipe-card>
+      </swipe-cards>
+
     </div>
   </ion-content>
 </ion-view>

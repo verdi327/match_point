@@ -1,4 +1,4 @@
-app = angular.module('app', ['ionic', 'ngCordova'])
+app = angular.module('app', ['ionic', 'ngCordova', 'ionic.contrib.ui.cards'])
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -50,6 +50,19 @@ app.directive('input', function($timeout) {
             });
           }
         }
+      });
+    }
+  }
+})
+
+app.directive('noScroll', function($document) {
+
+  return {
+    restrict: 'A',
+    link: function($scope, $element, $attr) {
+
+      $document.on('touchmove', function(e) {
+        e.preventDefault();
       });
     }
   }
