@@ -16,7 +16,8 @@ app.controller('SignupCtrl', function($scope, $state, Ratings) {
   }
 
   $scope.$watch("newUser.rating", function(value) {
-    console.log("value", value)
+    value = Number(value).toFixed(1);
+    $scope.newUser.rating = value;
     $scope.ntrpRating = Ratings.getNTRP(value)
   })
 

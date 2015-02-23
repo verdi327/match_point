@@ -1,10 +1,15 @@
 <ion-view view-title="Signup">
   <ion-content>
-    <h4 class="offset-left">
-      What is your rating
-    </h4>
-
-    <p>{{newUser.rating}}</p>
+    <div class="row">
+      <div class="col col-75">
+        <h4 class="offset-left" style="padding:3px 0px">
+          What is your rating
+        </h4>    
+      </div>
+      <div class="col">
+        <h4 class="rating-label">{{newUser.rating}}</h4>
+      </div>
+    </div>
     
     <div class="range">
       <input type="range" name="volume" min="1.0" max="7.0" value="4.0" ng-model="newUser.rating" step="0.5">
@@ -12,6 +17,10 @@
 
     <div class="rating-explanation">
       {{ntrpRating}}
+    </div>
+
+    <div class="list list-inset">
+      <button class="button button-block button-positive" ng-click="step('3')">Continue</button>
     </div>
 
   </ion-content>
