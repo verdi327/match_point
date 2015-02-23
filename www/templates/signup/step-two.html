@@ -1,0 +1,18 @@
+<ion-view view-title="Signup">
+  <ion-content>
+    <h4 class="offset-left">
+      What is your rating
+    </h4>
+
+    <p>{{newUser.rating}}</p>
+    
+    <div class="range">
+      <input type="range" name="volume" min="1.0" max="7.0" value="4.0" ng-model="newUser.rating" step="0.5">
+    </div>
+
+    <div class="rating-explanation">
+      {{ntrpRating}}
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,28 @@
+<ion-view view-title="Signup">
+  <ion-content>
+    <h4 class="offset-left">
+      Welcome to SFTC  
+    </h4>
+
+
+    <div class="list list-inset">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Email</span>
+        <input type="text" ng-model="newUser.email">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="newUser.password">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">General Playing Availability</span>
+        <textarea rows="3" ng-model="newUser.availability"></textarea>
+      </label>
+      
+      <button class="button button-block button-positive" ng-click="step('2')">Continue</button>
+    </div>    
+  </ion-content>
+</ion-view>
+

@@ -102,7 +102,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   .state('signup', {
     url: "/signup",
-    templateUrl: "templates/signup.html"
+    abstract: true,
+    templateUrl: "templates/signup.html",
+    controller: 'SignupCtrl'
+  })
+
+  .state('signup.step-one', {
+    url: "/step-one",
+    templateUrl: "templates/signup/step-one.html"
+  })
+
+  .state('signup.step-two', {
+    url: "/step-two",
+    templateUrl: "templates/signup/step-two.html"
+  })
+
+  .state('signup.step-three', {
+    url: "/step-three",
+    templateUrl: "templates/signup/step-three.html"
   })
 
   .state('app.search', {
@@ -193,5 +210,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/signup');
+  $urlRouterProvider.otherwise('/signup/step-one');
 });

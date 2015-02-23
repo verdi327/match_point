@@ -1,13 +1,15 @@
-<ion-view view-title="Signup" ng-controller="SignupCtrl">
-  <ion-nav-bar class="bar-stable">
-    <ion-nav-buttons side="right">
-      <button class="button button-clear button-positive" ng-click="openLoginModal()" ng-controller="LoginCtrl">
-        login
-      </button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+<ion-nav-bar class="bar-stable">
+  <ion-nav-back-button class="button-clear">
+    <i class="ion-ios7-arrow-left"></i> Back
+  </ion-nav-back-button>
 
-  <ion-content>
-    
-  </ion-content>
-</ion-view>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-positive" ng-click="openLoginModal()" ng-controller="LoginCtrl">
+      login
+    </button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+
+<ion-nav-view></ion-nav-view>
+
+
